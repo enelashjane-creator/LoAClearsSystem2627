@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Register | LOAClears</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+    min-height:100vh;
+    font-family:"Segoe UI",Arial,sans-serif;
+    background:
+        radial-gradient(circle at 15% 20%,rgba(244,196,0,.22),transparent 28%),
+        radial-gradient(circle at 85% 80%,rgba(244,196,0,.18),transparent 30%),
+        linear-gradient(135deg,#092d68 0%,#064a91 48%,#061a3d 100%);
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:30px;
+}
+.register-wrapper{
+    width:min(1050px,100%);
+    min-height:650px;
+    display:grid;
+    grid-template-columns:42% 58%;
+    background:rgba(4,25,59,.94);
+    border:1px solid rgba(244,196,0,.35);
+    border-radius:24px;
+    overflow:hidden;
+    box-shadow:0 25px 70px rgba(0,0,0,.38);
+}
+.register-brand{
+    background:linear-gradient(
+        145deg,
+        rgba(244,196,0,.18),
+        rgba(7,44,94,.55) 45%,
+        rgba(3,20,48,.9)
+    );
+    padding:45px 38px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    border-right:1px solid rgba(244,196,0,.22);
+}
+.logo-box{
+    width:190px;
+    height:190px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-bottom:25px;
+}
+.logo-box img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+}
+.brand-name{
+    font-size:42px;
+    font-weight:800;
+    color:#f4c400;
+    letter-spacing:1px;
+}
+.brand-subtitle{
+    margin-top:5px;
+    font-size:14px;
+    font-weight:700;
+    letter-spacing:3px;
+}
+.school-name{
+    margin-top:20px;
+    font-size:18px;
+    font-weight:700;
+}
+.brand-description{
+    margin-top:25px;
+    max-width:330px;
+    color:#dbe7f8;
+    font-size:14px;
+    line-height:1.7;
+}
+.authorized{
+    margin-top:25px;
+    padding:10px 18px;
+    border-radius:30px;
+    background:rgba(244,196,0,.12);
+    border:1px solid rgba(244,196,0,.35);
+    color:#f4c400;
+    font-size:12px;
+    font-weight:700;
+}
+.register-panel{
+    padding:42px 50px;
+    background:rgba(255,255,255,.035);
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+.register-title{
+    font-size:31px;
+    font-weight:800;
+    margin-bottom:7px;
+}
+.register-subtitle{
+    color:#b9cce7;
+    font-size:14px;
+    margin-bottom:27px;
+}
+.form-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:17px 20px;
+}
+.form-group{
+    display:flex;
+    flex-direction:column;
+}
+.form-group.full{
+    grid-column:1/-1;
+}
+label{
+    margin-bottom:7px;
+    font-size:13px;
+    font-weight:700;
+}
+input{
+    width:100%;
+    height:48px;
+    border-radius:10px;
+    border:1px solid rgba(255,255,255,.16);
+    background:rgba(2,18,43,.75);
+    color:#fff;
+    padding:0 15px;
+    font-size:14px;
+    outline:none;
+}
+input::placeholder{
+    color:#8195b3;
+}
+input:focus{
+    border-color:#f4c400;
+    box-shadow:0 0 0 3px rgba(244,196,0,.10);
+}
+.readonly-field{
+    color:#f4c400;
+    font-weight:700;
+}
+.password-wrapper{
+    position:relative;
+}
+.password-wrapper input{
+    padding-right:48px;
+}
+.toggle-password{
+    position:absolute;
+    right:13px;
+    top:50%;
+    transform:translateY(-50%);
+    border:none;
+    background:transparent;
+    color:#f4c400;
+    cursor:pointer;
+    font-size:18px;
+}
+.terms{
+    margin-top:20px;
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+    color:#aebfd8;
+    font-size:12px;
+    line-height:1.5;
+}
+.terms input{
+    width:16px;
+    height:16px;
+    margin-top:1px;
+    accent-color:#f4c400;
+    flex-shrink:0;
+}
+.terms label{
+    margin:0;
+    font-weight:400;
+}
+.register-button{
+    width:100%;
+    height:51px;
+    margin-top:22px;
+    border:none;
+    border-radius:10px;
+    background:linear-gradient(135deg,#f4c400,#ffd83d);
+    color:#071b3c;
+    font-size:15px;
+    font-weight:800;
+    cursor:pointer;
+    box-shadow:0 8px 20px rgba(244,196,0,.18);
+}
+.message{
+    display:none;
+    margin-top:15px;
+    padding:11px 14px;
+    border-radius:9px;
+    font-size:13px;
+    line-height:1.5;
+}
+.message.error{
+    display:block;
+    background:rgba(220,53,69,.14);
+    border:1px solid rgba(220,53,69,.4);
+    color:#ffb4bd;
+}
+.message.success{
+    display:block;
+    background:rgba(25,135,84,.15);
+    border:1px solid rgba(25,135,84,.4);
+    color:#9ff0c5;
+}
+.bottom-link{
+    text-align:center;
+    margin-top:20px;
+    color:#aebfd8;
+    font-size:13px;
+}
+.bottom-link a{
+    color:#f4c400;
+    font-weight:800;
+    text-decoration:none;
+}
+@media(max-width:850px){
+    body{padding:15px}
+    .register-wrapper{
+        grid-template-columns:1fr;
+    }
+    .register-brand{
+        padding:30px 20px;
+        border-right:none;
+        border-bottom:1px solid rgba(244,196,0,.22);
+    }
+    .logo-box{
+        width:125px;
+        height:125px;
+    }
+    .brand-name{
+        font-size:32px;
+    }
+    .register-panel{
+        padding:30px 25px;
+    }
+}
+@media(max-width:560px){
+    .form-grid{
+        grid-template-columns:1fr;
+    }
+    .form-group.full{
+        grid-column:auto;
+    }
+}
+</style>
+</head>
+<body>
+<div class="register-wrapper">
+<div class="register-brand">
+    <div class="logo-box">
+        <img src="assets/loalogoclears.png" alt="">
+    </div>
+    <div class="brand-name">LOAClears</div>
+    <div class="brand-subtitle">DIGITAL CLEARANCE SYSTEM</div>
+    <div class="school-name">🏫 Lyceum of Alabang</div>
+    <div class="brand-description">
+        Create your authorized student account to access
+        the digital clearance system.
+    </div>
+    <div class="authorized">🔐 FOR LYCEUM OF ALABANG STUDENTS</div>
+</div>
+<div class="register-panel">
+    <div class="register-title">Create Student Account</div>
+    <div class="register-subtitle">Register your account to access your digital clearance.</div>
+    <form id="registerForm">
+        <div class="form-grid">
+            <div class="form-group full">
+                <label for="fullName">Full Name</label>
+                <input type="text" id="fullName" placeholder="Enter your complete name" autocomplete="off" required>
+            </div>
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" placeholder="Create a username" autocomplete="off" autocapitalize="none" spellcheck="false" required>
+            </div>
+            <div class="form-group">
+                <label for="studentNumber">Student Number / LRN</label>
+                <input type="text" id="studentNumber" placeholder="Enter your student number" autocomplete="off" required>
+            </div>
+            <div class="form-group">
+                <label for="gradeLevel">Grade Level</label>
+                <input type="text" id="gradeLevel" value="Grade 12" class="readonly-field" readonly>
+            </div>
+            <div class="form-group">
+                <label for="strand">Strand</label>
+                <input type="text" id="strand" value="ICT" class="readonly-field" readonly>
+            </div>
+            <div class="form-group full">
+                <label for="section">Section</label>
+                <input type="text" id="section" value="ICT 12-IPHEDEIAH" class="readonly-field" readonly>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <div class="password-wrapper">
+                    <input type="password" id="password" placeholder="Create a password" autocomplete="new-password" required>
+                    <button type="button" class="toggle-password" onclick="togglePassword('password',this)">👁</button>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password</label>
+                <div class="password-wrapper">
+                    <input type="password" id="confirmPassword" placeholder="Confirm your password" autocomplete="new-password" required>
+                    <button type="button" class="toggle-password" onclick="togglePassword('confirmPassword',this)">👁</button>
+                </div>
+            </div>
+        </div>
+        <div class="terms">
+            <input type="checkbox" id="agreeTerms" required>
+            <label for="agreeTerms">
+                I confirm that I am a Grade 12 ICT student of
+                Lyceum of Alabang and that the information I entered
+                is correct.
+            </label>
+        </div>
+        <div id="message" class="message"></div>
+        <button type="submit" id="registerButton" class="register-button">CREATE STUDENT ACCOUNT</button>
+    </form>
+    <div class="bottom-link">
+        Already have an account?
+        <a href="login.html">Back to Login</a>
+    </div>
+</div>
+</div>
+<script>
+function togglePassword(id,button){
+    const input=document.getElementById(id);
+    if(input.type==="password"){
+        input.type="text";
+        button.textContent="🙈";
+    }else{
+        input.type="password";
+        button.textContent="👁";
+    }
+}
+document.getElementById("registerForm").addEventListener("submit",function(event){
+    event.preventDefault();
+    const message=document.getElementById("message");
+    const fullName=document.getElementById("fullName").value.trim();
+    const username=document.getElementById("username").value.trim();
+    const studentNumber=document.getElementById("studentNumber").value.trim();
+    const password=document.getElementById("password").value;
+    const confirmPassword=document.getElementById("confirmPassword").value;
+    const agreeTerms=document.getElementById("agreeTerms").checked;
+    message.className="message";
+    message.textContent="";
+    if(!fullName || !username || !studentNumber || !password || !confirmPassword){
+        message.className="message error";
+        message.textContent="Please complete all required fields.";
+        return;
+    }
+    if(!/^[a-zA-Z0-9._-]+$/.test(username)){
+        message.className="message error";
+        message.textContent="Username can only contain letters, numbers, dot, underscore, or dash.";
+        return;
+    }
+    if(password.length<6){
+        message.className="message error";
+        message.textContent="Password must be at least 6 characters.";
+        return;
+    }
+    if(password!==confirmPassword){
+        message.className="message error";
+        message.textContent="Passwords do not match.";
+        return;
+    }
+    if(!agreeTerms){
+        message.className="message error";
+        message.textContent="Please confirm that you are a Lyceum of Alabang student.";
+        return;
+    }
+    message.className="message success";
+    message.textContent="Account created successfully! Redirecting to Login...";
+    document.getElementById("registerForm").reset();
+    setTimeout(function(){
+        window.location.href="login.html";
+    },1500);
+});
+</script>
+</body>
+</html>
